@@ -36,3 +36,5 @@
 - **Extensibility and Customization: Contribute additional modules, indicators, or data sources to enhance the analyzer's functionality and tailor it to your specific needs.**
 
 **Empower yourself with RustyTrader, the CLI stock market analyzer built with Rust. Make informed investment decisions with a comprehensive set of tools and data, all conveniently accessible from the command line.**
+![image](https://github.com/Aby-ss/RustyTrader/assets/103417697/7d0af5a1-6036-42fb-a1d2-a8d1a3efd88b)
+
