@@ -12,7 +12,7 @@ struct SymbolData {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Make sure to replace YOUR_API_KEY with your actual API key
-    let api_key = "YOUR_API_KEY";
+    let api_key = "649954668f1d54.62736115";
     let symbol = "AAPL";
 
     // Build the API URL
