@@ -22,6 +22,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         api_key = api_key
     );
 
+    
     // Send the HTTP GET request
     let response = reqwest::get(&url).await?.text().await?;
 
