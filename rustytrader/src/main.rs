@@ -1,3 +1,7 @@
+extern crate reqwest;
+extern crate serde;
+extern crate serde_json;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize)]
@@ -9,10 +13,9 @@ struct SymbolData {
     currency: String,
 }
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() {
     // Make sure to replace YOUR_API_KEY with your actual API key
-    let api_key = "YOUR_API_KEY";
+    let api_key = "649954668f1d54.62736115";
     let symbol = "AAPL";
 
     // Build the API URL
@@ -23,15 +26,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     );
 
     // Send the HTTP GET request
-    let response = reqwest::get(&url).await?.text().await?;
-    
+    let mut response = reqwest::get(&url).unwrap();
+    let mut body = String::new();
+    response.read_to_string(&mut body).unwrap();
+
     // Deserialize the JSON response
-    let symbol_data: Result<SymbolData, _> = serde_json::from_str(&response);
-    
+    let symbol_data: Result<SymbolData, _> = serde_json::from_str(&body);
+
     match symbol_data {
         Ok(data) => println!("{:#?}", data),
         Err(err) => eprintln!("Failed to parse symbol data: {}", err),
     }
-
-    Ok(())
 }
