@@ -12,7 +12,7 @@ struct SymbolData {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Make sure to replace YOUR_API_KEY with your actual API key
-    let api_key = "649954668f1d54.62736115";
+    let api_key = "YOUR_API_KEY";
     let symbol = "AAPL";
 
     // Build the API URL
@@ -22,15 +22,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         api_key = api_key
     );
 
-    
     // Send the HTTP GET request
     let response = reqwest::get(&url).await?.text().await?;
-
+    
     // Deserialize the JSON response
-    let symbol_data: SymbolData = serde_json::from_str(&response)?;
-
-    // Print the symbol data
-    println!("{:#?}", symbol_data);
+    let symbol_data: Result<SymbolData, _> = serde_json::from_str(&response);
+    
+    match symbol_data {
+        Ok(data) => println!("{:#?}", data),
+        Err(err) => eprintln!("Failed to parse symbol data: {}", err),
+    }
 
     Ok(())
 }
